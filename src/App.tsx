@@ -1,3 +1,4 @@
+import { Menu, X } from "lucide-react";
 import React, {
   useEffect,
   useMemo,
@@ -20,6 +21,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import { createPortal } from "react-dom";
 
 // =====================
 // UI SHIMS (sin shadcn/ui)
@@ -351,6 +353,7 @@ function runQuoteTests() {
 }
 
 export default function RollerBlindsLanding() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [width, setWidth] = useState(120);
   const [height, setHeight] = useState(160);
   const [tela, setTela] = useState<TelaKey>("sunscreen5");
@@ -373,6 +376,23 @@ export default function RollerBlindsLanding() {
     };
   }, []);
 
+  // Bloquea scroll cuando el menú móvil está abierto y permite cerrar con Escape
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const body = document.body;
+    if (mobileMenuOpen) body.classList.add("overflow-hidden");
+    else body.classList.remove("overflow-hidden");
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      body.classList.remove("overflow-hidden");
+    };
+  }, [mobileMenuOpen]);
+
   const quote = useQuote(width, height, tela, accion, {
     instalacion: withInst,
     guia: withGuia,
@@ -390,13 +410,14 @@ export default function RollerBlindsLanding() {
     <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-b from-white to-slate-50 text-slate-800">
       {/* Header fijo con links */}
       <header className="fixed top-0 left-0 w-full z-50 backdrop-blur bg-[#F8F6F3]/95 border-b border-[#E3E0DB] shadow-sm">
-        <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+        <nav className="mx-auto max-w-6xl px-4 py-6 flex items-center justify-between relative">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-6 w-6" />
             <span className="font-bold text-lg">{BRAND_NAME}</span>
             <Badge className="ml-2">Cortinas Roller</Badge>
           </div>
-          <div className="flex items-center gap-6">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-6">
             <a
               href="#catalogo"
               className="text-[#44423F] hover:text-[#A3B18A] font-medium transition-colors"
@@ -425,7 +446,88 @@ export default function RollerBlindsLanding() {
               </Button>
             </a>
           </div>
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#A3B18A] hover:bg-[#EADCD6] transition-colors absolute right-4 top-3 bg-[#F8F6F3] border border-[#E3E0DB]"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Abrir menú"
+            style={{ zIndex: 60 }}
+          >
+            <Menu className="h-7 w-7 text-[#44423F]" />
+          </button>
         </nav>
+        {/* Mobile menu overlay */}
+        {mobileMenuOpen &&
+          typeof document !== "undefined" &&
+          createPortal(
+            <div
+              className="fixed inset-0 z-[120] flex justify-end"
+              onClick={(e) => {
+                // tap fuera del panel cierra
+                if (e.target === e.currentTarget) setMobileMenuOpen(false);
+              }}
+            >
+              {/* Backdrop */}
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+
+              {/* Panel */}
+              <aside
+                role="dialog"
+                aria-modal="true"
+                className="relative h-full w-[88vw] max-w-sm bg-[#F8F6F3] border-l border-[#E3E0DB] shadow-2xl flex flex-col"
+              >
+                <div className="flex items-center justify-between px-5 py-4 border-b border-[#E3E0DB]">
+                  <div className="font-semibold text-[#44423F]">Menú</div>
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-full bg-[#44423F] text-white p-2 shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A3B18A]"
+                    aria-label="Cerrar menú"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                <nav className="flex-1 overflow-auto px-4 py-6">
+                  <a
+                    href="#catalogo"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#44423F] hover:bg-[#EADCD6]"
+                  >
+                    Catálogo
+                  </a>
+                  <a
+                    href="#cotizador"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#44423F] hover:bg-[#EADCD6]"
+                  >
+                    Cotizador
+                  </a>
+                  <a
+                    href="#contacto"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full mb-6 rounded-lg px-4 py-3 text-base font-semibold text-[#44423F] hover:bg-[#EADCD6]"
+                  >
+                    Contacto
+                  </a>
+
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block"
+                  >
+                    <Button className="w-full justify-center text-base py-3 bg-[#A3B18A] border-[#A3B18A] hover:bg-[#C2B280] text-[#44423F]">
+                      <PhoneCall className="h-5 w-5 mr-2" /> Pedí tu cotización
+                    </Button>
+                  </a>
+                </nav>
+
+                <div className="h-[env(safe-area-inset-bottom,0px)]" />
+              </aside>
+            </div>,
+            document.body
+          )}
       </header>
       {/* Espaciador para header fijo */}
       <div className="h-[72px]" />
@@ -449,7 +551,7 @@ export default function RollerBlindsLanding() {
         >
           <h1 className="text-4xl md:text-5xl font-black leading-tight">
             Elegí la luz, el confort y el estilo con{" "}
-            <span className="underline decoration-wavy decoration-current">
+            <span className="underline decoration-current">
               cortinas roller
             </span>
           </h1>
