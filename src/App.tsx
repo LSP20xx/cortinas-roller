@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, PropsWithChildren } from "react";
+import React, { useEffect, useMemo, useState, type PropsWithChildren } from "react";
 import { motion } from "framer-motion";
 import {
   PhoneCall,
@@ -198,7 +198,7 @@ const AMBIENT_MEDIA: MediaItem[] = [
 function MediaSlider({ items = AMBIENT_MEDIA }: { items?: MediaItem[] }) {
   const [index, setIndex] = React.useState(0);
   const length = items.length;
-  const go = (i: number) => setIndex((prev) => (i + length) % length);
+  const go = (i: number) => setIndex((i + length) % length);
 
   useEffect(() => {
     const id = setInterval(() => go(index + 1), 5000);
