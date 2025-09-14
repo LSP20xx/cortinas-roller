@@ -25,7 +25,10 @@ const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
   ...rest
 }) => (
   <button
-    className={`px-4 py-2 rounded-md border bg-white hover:bg-slate-50 ${className}`}
+    className={`px-4 py-2 rounded-md border font-semibold transition-colors duration-150
+      bg-[#A3B18A] text-[#44423F] border-[#A3B18A] hover:bg-[#C2B280] hover:border-[#C2B280]
+      focus:outline-none focus:ring-2 focus:ring-[#A3B18A]
+      ${className}`}
     {...rest}
   >
     {children}
@@ -36,7 +39,7 @@ const Card: React.FC<PropsWithChildren<{ className?: string }>> = ({
   className = "",
   children,
 }) => (
-  <div className={`rounded-2xl border bg-white/70 ${className}`}>
+  <div className={`rounded-2xl border bg-[#E3E0DB]/80 border-[#D6CFC4] ${className}`}>
     {children}
   </div>
 );
@@ -51,7 +54,7 @@ const CardTitle: React.FC<PropsWithChildren<{ className?: string }>> = ({
 const CardDescription: React.FC<PropsWithChildren<{ className?: string }>> = ({
   className = "",
   children,
-}) => <div className={`text-sm text-slate-600 ${className}`}>{children}</div>;
+}) => <div className={`text-sm text-[#44423F]/80 ${className}`}>{children}</div>;
 const CardContent: React.FC<PropsWithChildren<{ className?: string }>> = ({
   className = "",
   children,
@@ -62,7 +65,7 @@ const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = (
 ) => (
   <input
     {...props}
-    className={`w-full border rounded-md px-3 py-2 ${props.className || ""}`}
+    className={`w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#44423F] border-[#D6CFC4] placeholder-[#A3B18A] focus:border-[#A3B18A] focus:ring-2 focus:ring-[#A3B18A] ${props.className || ""}`}
   />
 );
 const Textarea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement>> = (
@@ -70,7 +73,7 @@ const Textarea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement>> = (
 ) => (
   <textarea
     {...props}
-    className={`w-full border rounded-md px-3 py-2 ${props.className || ""}`}
+    className={`w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#44423F] border-[#D6CFC4] placeholder-[#A3B18A] focus:border-[#A3B18A] focus:ring-2 focus:ring-[#A3B18A] ${props.className || ""}`}
   />
 );
 const Label: React.FC<React.LabelHTMLAttributes<HTMLLabelElement>> = ({
@@ -87,7 +90,7 @@ const Badge: React.FC<PropsWithChildren<{ className?: string }>> = ({
   children,
 }) => (
   <span
-    className={`inline-flex items-center px-2 py-0.5 rounded-md border text-xs ${className}`}
+    className={`inline-flex items-center px-2 py-0.5 rounded-md border text-xs bg-[#EADCD6] border-[#EADCD6] text-[#44423F] ${className}`}
   >
     {children}
   </span>
@@ -371,15 +374,18 @@ export default function RollerBlindsLanding() {
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-b from-white to-slate-50 text-slate-800">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
-        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      {/* Header fijo con links */}
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur bg-[#F8F6F3]/95 border-b border-[#E3E0DB] shadow-sm">
+        <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-6 w-6" />
             <span className="font-bold text-lg">{BRAND_NAME}</span>
             <Badge className="ml-2">Cortinas Roller</Badge>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-6">
+            <a href="#catalogo" className="text-[#44423F] hover:text-[#A3B18A] font-medium transition-colors">Catálogo</a>
+            <a href="#cotizador" className="text-[#44423F] hover:text-[#A3B18A] font-medium transition-colors">Cotizador</a>
+            <a href="#contacto" className="text-[#44423F] hover:text-[#A3B18A] font-medium transition-colors">Contacto</a>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`}
               target="_blank"
@@ -390,8 +396,10 @@ export default function RollerBlindsLanding() {
               </Button>
             </a>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
+      {/* Espaciador para header fijo */}
+      <div className="h-[72px]" />
 
       {/* Slider full screen */}
       <section className="relative w-screen h-screen min-h-[100vh] flex items-center justify-center overflow-hidden">
@@ -491,7 +499,7 @@ export default function RollerBlindsLanding() {
       </section>
 
       {/* Catálogo con fotos */}
-      <section id="catalogo" className="bg-white border-y">
+  <section id="catalogo" className="bg-white border-y scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 py-12">
           <h2 className="text-2xl md:text-3xl font-extrabold">
             Catálogo rápido
@@ -527,7 +535,7 @@ export default function RollerBlindsLanding() {
       </section>
 
       {/* Cotizador */}
-      <section id="cotizador" className="mx-auto max-w-6xl px-4 py-12">
+  <section id="cotizador" className="mx-auto max-w-6xl px-4 py-12 scroll-mt-24">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           <Card>
             <CardHeader>
@@ -567,7 +575,7 @@ export default function RollerBlindsLanding() {
                 <div>
                   <Label>Tela</Label>
                   <select
-                    className="w-full border rounded-md px-3 py-2"
+                    className="w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#44423F] border-[#D6CFC4] focus:border-[#A3B18A] focus:ring-2 focus:ring-[#A3B18A]"
                     value={tela}
                     onChange={(e) => setTela(e.target.value as TelaKey)}
                   >
@@ -579,7 +587,7 @@ export default function RollerBlindsLanding() {
                 <div>
                   <Label>Acción</Label>
                   <select
-                    className="w-full border rounded-md px-3 py-2"
+                    className="w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#44423F] border-[#D6CFC4] focus:border-[#A3B18A] focus:ring-2 focus:ring-[#A3B18A]"
                     value={accion}
                     onChange={(e) => setAccion(e.target.value as Accion)}
                   >
@@ -793,7 +801,7 @@ export default function RollerBlindsLanding() {
       </section>
 
       {/* Footer */}
-      <footer id="contacto" className="bg-slate-900 text-slate-100">
+  <footer id="contacto" className="bg-slate-900 text-slate-100 scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-2 text-lg font-bold">
