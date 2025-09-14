@@ -556,10 +556,7 @@ export default function RollerBlindsLanding() {
           className="max-w-3xl text-center"
         >
           <h1 className="text-4xl md:text-5xl font-black leading-tight">
-            Elegí la luz, el confort y el estilo con{" "}
-            <span className="underline decoration-current">
-              cortinas roller
-            </span>
+            Elegí la luz, el confort y el estilo con Confort Roller
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Blackout y Sunscreen a medida. Instalación profesional en CABA y
