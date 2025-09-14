@@ -178,7 +178,7 @@ const AMBIENT_MEDIA: MediaItem[] = [
     alt: "Oficina sunscreen",
   },
   {
-    src: "/img/Detalle de cortinas.jpg",
+    src: "/img/Ventana habitación.jpg",
     alt: "Detalle de cortinas",
   },
 ];
@@ -194,7 +194,7 @@ function MediaSlider({ items = AMBIENT_MEDIA }: { items?: MediaItem[] }) {
   }, [index, length]);
 
   return (
-    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-black/5">
+    <div className="relative w-full h-full min-h-[100vh] min-w-[100vw] overflow-hidden">
       {items.map((m, i) => (
         <div
           key={i}
@@ -205,20 +205,23 @@ function MediaSlider({ items = AMBIENT_MEDIA }: { items?: MediaItem[] }) {
           <img src={m.src} alt={m.alt} className="w-full h-full object-cover" />
         </div>
       ))}
-      <button
-        aria-label="Anterior"
-        onClick={() => go(index - 1)}
-        className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-slate-700 rounded-full p-2 shadow"
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </button>
-      <button
-        aria-label="Siguiente"
-        onClick={() => go(index + 1)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-slate-700 rounded-full p-2 shadow"
-      >
-        <ChevronRight className="h-5 w-5" />
-      </button>
+      {/* Flechas centradas vertical y horizontalmente, con fondo más visible */}
+      <div className="absolute inset-0 flex items-center justify-between pointer-events-none z-10">
+        <button
+          aria-label="Anterior"
+          onClick={() => go(index - 1)}
+          className="mx-4 bg-white/80 hover:bg-white text-slate-700 rounded-full p-3 shadow pointer-events-auto focus:outline-none focus:ring-2 focus:ring-slate-400"
+        >
+          <ChevronLeft className="h-7 w-7" />
+        </button>
+        <button
+          aria-label="Siguiente"
+          onClick={() => go(index + 1)}
+          className="mx-4 bg-white/80 hover:bg-white text-slate-700 rounded-full p-3 shadow pointer-events-auto focus:outline-none focus:ring-2 focus:ring-slate-400"
+        >
+          <ChevronRight className="h-7 w-7" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -390,55 +393,56 @@ export default function RollerBlindsLanding() {
         </div>
       </nav>
 
-      {/* Hero con slider */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-black leading-tight">
-              Elegí la luz, el confort y el estilo con{" "}
-              <span className="underline decoration-wavy decoration-current">
-                cortinas roller
-              </span>
-            </h1>
-            <p className="mt-4 text-lg text-slate-600">
-              Blackout y Sunscreen a medida. Instalación profesional en CABA y
-              GBA. Asesoría sin cargo.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <BadgeCheck className="h-5 w-5" />
-              <span>Garantía escrita</span>
-              <Truck className="h-5 w-5 ml-4" />
-              <span>Entrega rápida</span>
-              <Leaf className="h-5 w-5 ml-4" />
-              <span>Fácil limpieza</span>
-            </div>
-            <div className="mt-8 flex gap-3">
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Button className="bg-slate-900 text-white border-slate-900">
-                  Cotizar ahora
-                </Button>
-              </a>
-              <a href="#catalogo">
-                <Button>Ver catálogo</Button>
-              </a>
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <MediaSlider />
-          </motion.div>
+      {/* Slider full screen */}
+      <section className="relative w-screen h-screen min-h-[100vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <MediaSlider />
         </div>
+        {/* Overlay para oscurecer un poco si se desea, opcional */}
+        {/* <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" /> */}
+      </section>
+
+      {/* Hero abajo del slider */}
+      <section className="relative z-20 w-full bg-gradient-to-b from-white/90 to-slate-50/90 py-12 px-4 flex flex-col items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl text-center"
+        >
+          <h1 className="text-4xl md:text-5xl font-black leading-tight">
+            Elegí la luz, el confort y el estilo con{" "}
+            <span className="underline decoration-wavy decoration-current">
+              cortinas roller
+            </span>
+          </h1>
+          <p className="mt-4 text-lg text-slate-600">
+            Blackout y Sunscreen a medida. Instalación profesional en CABA y
+            GBA. Asesoría sin cargo.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3 justify-center">
+            <BadgeCheck className="h-5 w-5" />
+            <span>Garantía escrita</span>
+            <Truck className="h-5 w-5 ml-4" />
+            <span>Entrega rápida</span>
+            <Leaf className="h-5 w-5 ml-4" />
+            <span>Fácil limpieza</span>
+          </div>
+          <div className="mt-8 flex gap-3 justify-center">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Button className="bg-slate-900 text-white border-slate-900">
+                Cotizar ahora
+              </Button>
+            </a>
+            <a href="#catalogo">
+              <Button>Ver catálogo</Button>
+            </a>
+          </div>
+        </motion.div>
       </section>
 
       {/* Beneficios */}
