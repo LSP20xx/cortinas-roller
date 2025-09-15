@@ -375,6 +375,8 @@ export default function RollerBlindsLanding() {
       document.documentElement.classList.add("overflow-x-hidden");
       // Garantiza fondo claro del body detrás del wrapper
       document.body.classList.add("bg-slate-50");
+      // Aplicar tipografías base
+      document.body.style.fontFamily = "'Open Sans', sans-serif";
     }
     return () => {
       document.body.classList.remove("overflow-x-hidden", "bg-slate-50");
@@ -419,7 +421,7 @@ export default function RollerBlindsLanding() {
         <nav className="mx-auto max-w-6xl px-4 py-6 flex items-center justify-between relative">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-6 w-6" />
-            <span className="font-bold text-lg">{BRAND_NAME}</span>
+            <span className="font-montserrat font-semibold text-lg">{BRAND_NAME}</span>
             <Badge className="ml-2">Cortinas Roller</Badge>
           </div>
           {/* Desktop nav */}
@@ -555,10 +557,10 @@ export default function RollerBlindsLanding() {
           transition={{ duration: 0.5 }}
           className="max-w-3xl text-center"
         >
-          <h1 className="text-4xl md:text-5xl font-black leading-tight">
+          <h1 className="font-montserrat font-semibold text-4xl md:text-5xl leading-tight">
             Elegí la luz, el confort y el estilo con Confort Roller
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 font-opensans">
             Blackout y Sunscreen a medida. Instalación profesional en CABA y
             GBA. Asesoría sin cargo.
           </p>
@@ -635,10 +637,10 @@ export default function RollerBlindsLanding() {
       {/* Catálogo con fotos */}
       <section id="catalogo" className="bg-white border-y scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 py-12">
-          <h2 className="text-2xl md:text-3xl font-extrabold">
+          <h2 className="font-montserrat font-semibold text-2xl md:text-3xl">
             Catálogo rápido
           </h2>
-          <p className="mt-2 text-slate-600">
+          <p className="mt-2 text-slate-600 font-opensans">
             Colores y texturas más elegidos. Podés reemplazar estas tarjetas por
             tus colecciones.
           </p>
