@@ -39,8 +39,8 @@ const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
 }) => (
   <button
     className={`flex items-center px-6 py-3 rounded-lg border font-semibold shadow-md transition-all duration-200
-      bg-[#A3B18A] text-[#44423F] border-[#A3B18A] hover:bg-[#C2B280] hover:border-[#C2B280] hover:shadow-lg
-      focus:outline-none focus:ring-2 focus:ring-[#A3B18A] focus:ring-offset-2
+      bg-[#A69A90] text-[#F5F5F5] border-[#A69A90] hover:bg-[#C2B280] hover:border-[#C2B280] hover:shadow-lg
+      focus:outline-none focus:ring-2 focus:ring-[#A69A90] focus:ring-offset-2
       active:scale-95
       ${className}`}
     {...rest}
@@ -71,7 +71,7 @@ const CardDescription: React.FC<PropsWithChildren<{ className?: string }>> = ({
   className = "",
   children,
 }) => (
-  <div className={`text-sm text-[#44423F]/80 ${className}`}>{children}</div>
+  <div className={`text-sm text-[#F5F5F5]/80 ${className}`}>{children}</div>
 );
 const CardContent: React.FC<PropsWithChildren<{ className?: string }>> = ({
   className = "",
@@ -83,7 +83,7 @@ const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = (
 ) => (
   <input
     {...props}
-    className={`w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#44423F] border-[#D6CFC4] placeholder-[#A3B18A] focus:border-[#A3B18A] focus:ring-2 focus:ring-[#A3B18A] ${
+    className={`w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#F5F5F5] border-[#D6CFC4] placeholder-[#A69A90] focus:border-[#A69A90] focus:ring-2 focus:ring-[#A69A90] ${
       props.className || ""
     }`}
   />
@@ -93,7 +93,7 @@ const Textarea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement>> = (
 ) => (
   <textarea
     {...props}
-    className={`w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#44423F] border-[#D6CFC4] placeholder-[#A3B18A] focus:border-[#A3B18A] focus:ring-2 focus:ring-[#A3B18A] ${
+    className={`w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#F5F5F5] border-[#D6CFC4] placeholder-[#A69A90] focus:border-[#A69A90] focus:ring-2 focus:ring-[#A69A90] ${
       props.className || ""
     }`}
   />
@@ -112,7 +112,7 @@ const Badge: React.FC<PropsWithChildren<{ className?: string }>> = ({
   children,
 }) => (
   <span
-    className={`inline-flex items-center px-2 py-0.5 rounded-md border text-xs bg-[#EADCD6] border-[#EADCD6] text-[#44423F] ${className}`}
+    className={`inline-flex items-center px-2 py-0.5 rounded-md border text-xs bg-[#EADCD6] border-[#EADCD6] text-[#F5F5F5] ${className}`}
   >
     {children}
   </span>
@@ -235,14 +235,24 @@ function MediaSlider({ items = AMBIENT_MEDIA }: { items?: MediaItem[] }) {
         <button
           aria-label="Anterior"
           onClick={() => go(index - 1)}
-          className="mx-4 bg-white/80 hover:bg-white text-slate-700 rounded-full p-3 shadow pointer-events-auto focus:outline-none focus:ring-2 focus:ring-slate-400"
+          className="mx-4 bg-white/80 hover:bg-white text-slate-700 rounded-full p-3 shadow pointer-events-auto focus:outline-none focus:ring-2"
+          style={
+            {
+              "--tw-ring-color": "var(--color-primary)",
+            } as React.CSSProperties
+          }
         >
           <ChevronLeft className="h-7 w-7" />
         </button>
         <button
           aria-label="Siguiente"
           onClick={() => go(index + 1)}
-          className="mx-4 bg-white/80 hover:bg-white text-slate-700 rounded-full p-3 shadow pointer-events-auto focus:outline-none focus:ring-2 focus:ring-slate-400"
+          className="mx-4 bg-white/80 hover:bg-white text-slate-700 rounded-full p-3 shadow pointer-events-auto focus:outline-none focus:ring-2"
+          style={
+            {
+              "--tw-ring-color": "var(--color-primary)",
+            } as React.CSSProperties
+          }
         >
           <ChevronRight className="h-7 w-7" />
         </button>
@@ -421,26 +431,27 @@ export default function RollerBlindsLanding() {
         <nav className="mx-auto max-w-6xl px-4 py-6 flex items-center justify-between relative">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-6 w-6" />
-            <span className="font-montserrat font-semibold text-lg">{BRAND_NAME}</span>
-            <Badge className="ml-2">Cortinas Roller</Badge>
+            <span className="font-montserrat font-semibold text-lg">
+              {BRAND_NAME}
+            </span>
           </div>
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-6">
             <a
               href="#catalogo"
-              className="text-[#44423F] hover:text-[#A3B18A] font-medium transition-colors"
+              className="text-[#F5F5F5] hover:text-[#A69A90] font-medium transition-colors"
             >
               Catálogo
             </a>
             <a
               href="#cotizador"
-              className="text-[#44423F] hover:text-[#A3B18A] font-medium transition-colors"
+              className="text-[#F5F5F5] hover:text-[#A69A90] font-medium transition-colors"
             >
               Cotizador
             </a>
             <a
               href="#contacto"
-              className="text-[#44423F] hover:text-[#A3B18A] font-medium transition-colors"
+              className="text-[#F5F5F5] hover:text-[#A69A90] font-medium transition-colors"
             >
               Contacto
             </a>
@@ -449,19 +460,19 @@ export default function RollerBlindsLanding() {
               target="_blank"
               rel="noreferrer"
             >
-              <Button>
+              <Button className="bg-[#AFA59E] text-white border-[#AFA59E] hover:bg-[#C8BFB9] hover:border-[#C8BFB9]">
                 <PhoneCall className="h-4 w-4 mr-2" /> Pedí tu cotización
               </Button>
             </a>
           </div>
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#A3B18A] hover:bg-[#EADCD6] transition-colors absolute right-4 top-3 bg-[#F8F6F3] border border-[#E3E0DB]"
+            className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#A69A90] hover:bg-[#EADCD6] transition-colors absolute right-4 top-3 bg-[#F8F6F3] border border-[#E3E0DB]"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menú"
             style={{ zIndex: 60 }}
           >
-            <Menu className="h-7 w-7 text-[#44423F]" />
+            <Menu className="h-7 w-7 text-[#F5F5F5]" />
           </button>
         </nav>
         {/* Mobile menu overlay */}
@@ -485,10 +496,10 @@ export default function RollerBlindsLanding() {
                 className="relative h-full w-[88vw] max-w-sm bg-[#F8F6F3] border-l border-[#E3E0DB] shadow-2xl flex flex-col"
               >
                 <div className="flex items-center justify-between px-5 py-4 border-b border-[#E3E0DB]">
-                  <div className="font-semibold text-[#44423F]">Menú</div>
+                  <div className="font-semibold text-[#F5F5F5]">Menú</div>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-full bg-[#44423F] text-white p-2 shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A3B18A]"
+                    className="rounded-full bg-[#F5F5F5] text-white p-2 shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A69A90]"
                     aria-label="Cerrar menú"
                   >
                     <X className="h-5 w-5" />
@@ -499,21 +510,21 @@ export default function RollerBlindsLanding() {
                   <a
                     href="#catalogo"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#44423F] hover:bg-[#EADCD6]"
+                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#F5F5F5] hover:bg-[#EADCD6]"
                   >
                     Catálogo
                   </a>
                   <a
                     href="#cotizador"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#44423F] hover:bg-[#EADCD6]"
+                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#F5F5F5] hover:bg-[#EADCD6]"
                   >
                     Cotizador
                   </a>
                   <a
                     href="#contacto"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full mb-6 rounded-lg px-4 py-3 text-base font-semibold text-[#44423F] hover:bg-[#EADCD6]"
+                    className="block w-full mb-6 rounded-lg px-4 py-3 text-base font-semibold text-[#F5F5F5] hover:bg-[#EADCD6]"
                   >
                     Contacto
                   </a>
@@ -525,7 +536,7 @@ export default function RollerBlindsLanding() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block"
                   >
-                    <Button className="w-full justify-center text-base py-3 bg-[#A3B18A] border-[#A3B18A] hover:bg-[#C2B280] text-[#44423F]">
+                    <Button className="w-full justify-center text-base py-3 bg-[#A69A90] border-[#A69A90] hover:bg-[#C2B280] text-[#F5F5F5]">
                       <PhoneCall className="h-5 w-5 mr-2" /> Pedí tu cotización
                     </Button>
                   </a>
@@ -578,13 +589,13 @@ export default function RollerBlindsLanding() {
               target="_blank"
               rel="noreferrer"
             >
-              <Button className="bg-slate-900 text-white border-slate-900">
+              <Button className="bg-slate-900 text-white border-slate-900 hover:bg-slate-700 hover:border-slate-700">
                 Cotizar ahora
               </Button>
             </a>
-            <a href="#catalogo">
-              <Button>Ver catálogo</Button>
-            </a>
+            <Button className="bg-[#AFA59E] text-white border-[#AFA59E] hover:bg-[#C8BFB9] hover:border-[#C8BFB9]">
+              Ver catálogo
+            </Button>
           </div>
         </motion.div>
       </section>
@@ -597,7 +608,7 @@ export default function RollerBlindsLanding() {
               <CardTitle className="flex items-center gap-2">
                 <Sun className="h-5 w-5" /> Control de luz
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm text-slate-600">
                 Filtrá rayos UV y reducí el encandilamiento sin perder vista.
               </CardDescription>
             </CardHeader>
@@ -610,7 +621,7 @@ export default function RollerBlindsLanding() {
               <CardTitle className="flex items-center gap-2">
                 <Moon className="h-5 w-5" /> Descanso total
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm text-slate-600">
                 Blackout para dormitorios, salas de proyección y consultorios.
               </CardDescription>
             </CardHeader>
@@ -623,7 +634,7 @@ export default function RollerBlindsLanding() {
               <CardTitle className="flex items-center gap-2">
                 <Hammer className="h-5 w-5" /> A medida
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm text-slate-600">
                 Fabricación local y colocación por técnicos calificados.
               </CardDescription>
             </CardHeader>
@@ -637,9 +648,6 @@ export default function RollerBlindsLanding() {
       {/* Catálogo con fotos */}
       <section id="catalogo" className="bg-white border-y scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 py-12">
-          <h2 className="font-montserrat font-semibold text-2xl md:text-3xl">
-            Catálogo rápido
-          </h2>
           <p className="mt-2 text-slate-600 font-opensans">
             Colores y texturas más elegidos. Podés reemplazar estas tarjetas por
             tus colecciones.
@@ -657,7 +665,7 @@ export default function RollerBlindsLanding() {
                 </div>
                 <CardHeader>
                   <CardTitle className="text-lg">{item.name}</CardTitle>
-                  <CardDescription>
+                  <CardDescription className="mt-2 text-slate-600 font-opensans">
                     Muestras a domicilio sin cargo*
                   </CardDescription>
                 </CardHeader>
@@ -681,7 +689,7 @@ export default function RollerBlindsLanding() {
               <CardTitle className="flex items-center gap-2">
                 <Ruler className="h-5 w-5" /> Calculá tu presupuesto
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="mt-2 text-slate-600 font-opensans">
                 Valores estimados con IVA. El precio final se confirma tras la
                 medición.
               </CardDescription>
@@ -714,7 +722,7 @@ export default function RollerBlindsLanding() {
                 <div>
                   <Label>Tela</Label>
                   <select
-                    className="w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#44423F] border-[#D6CFC4] focus:border-[#A3B18A] focus:ring-2 focus:ring-[#A3B18A]"
+                    className="w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#F5F5F5] border-[#D6CFC4] focus:border-[#A69A90] focus:ring-2 focus:ring-[#A69A90]"
                     value={tela}
                     onChange={(e) => setTela(e.target.value as TelaKey)}
                   >
@@ -726,7 +734,7 @@ export default function RollerBlindsLanding() {
                 <div>
                   <Label>Acción</Label>
                   <select
-                    className="w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#44423F] border-[#D6CFC4] focus:border-[#A3B18A] focus:ring-2 focus:ring-[#A3B18A]"
+                    className="w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#F5F5F5] border-[#D6CFC4] focus:border-[#A69A90] focus:ring-2 focus:ring-[#A69A90]"
                     value={accion}
                     onChange={(e) => setAccion(e.target.value as Accion)}
                   >
@@ -788,14 +796,9 @@ export default function RollerBlindsLanding() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <Button>Pedir asesoría por WhatsApp</Button>
-                  </a>
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <Button>Cotizar ahora</Button>
+                    <Button className="bg-slate-900 text-white border-slate-900 hover:bg-slate-700 hover:border-slate-700">
+                      Contratar ahora
+                    </Button>
                   </a>
                 </div>
               </div>
@@ -805,7 +808,7 @@ export default function RollerBlindsLanding() {
           <Card>
             <CardHeader>
               <CardTitle>Dejanos tus medidas</CardTitle>
-              <CardDescription>
+              <CardDescription className="mt-2 text-slate-600 font-opensans">
                 Respondemos en el día de Lunes a Sábado.
               </CardDescription>
             </CardHeader>
@@ -860,7 +863,12 @@ export default function RollerBlindsLanding() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Button type="button">Enviar consulta</Button>
+                  <Button
+                    className="bg-[#AFA59E] text-white border-[#AFA59E] hover:bg-[#C8BFB9] hover:border-[#C8BFB9]"
+                    type="button"
+                  >
+                    Enviar consulta
+                  </Button>
                 </a>
                 <p className="text-xs text-slate-500">
                   * Podés adjuntar fotos de tus ventanas por WhatsApp luego del
