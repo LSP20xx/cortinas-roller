@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { motion } from "framer-motion";
 import {
-  PhoneCall,
   Ruler,
   Sun,
   Moon,
@@ -106,16 +105,6 @@ const Label: React.FC<React.LabelHTMLAttributes<HTMLLabelElement>> = ({
   <label className={`block mb-1 text-sm font-medium ${className}`} {...rest}>
     {children}
   </label>
-);
-const Badge: React.FC<PropsWithChildren<{ className?: string }>> = ({
-  className = "",
-  children,
-}) => (
-  <span
-    className={`inline-flex items-center px-2 py-0.5 rounded-md border text-xs bg-[#EADCD6] border-[#EADCD6] text-[#F5F5F5] ${className}`}
-  >
-    {children}
-  </span>
 );
 
 // ===== Config rápida =====
@@ -439,19 +428,19 @@ export default function RollerBlindsLanding() {
           <div className="hidden md:flex items-center gap-6">
             <a
               href="#catalogo"
-              className="text-[#F5F5F5] hover:text-[#A69A90] font-medium transition-colors"
+              className="text-[#050505] hover:text-[#A69A90] font-medium transition-colors"
             >
               Catálogo
             </a>
             <a
               href="#cotizador"
-              className="text-[#F5F5F5] hover:text-[#A69A90] font-medium transition-colors"
+              className="text-[#050505] hover:text-[#A69A90] font-medium transition-colors"
             >
               Cotizador
             </a>
             <a
               href="#contacto"
-              className="text-[#F5F5F5] hover:text-[#A69A90] font-medium transition-colors"
+              className="text-[#050505] hover:text-[#A69A90] font-medium transition-colors"
             >
               Contacto
             </a>
@@ -461,7 +450,7 @@ export default function RollerBlindsLanding() {
               rel="noreferrer"
             >
               <Button className="bg-[#AFA59E] text-white border-[#AFA59E] hover:bg-[#C8BFB9] hover:border-[#C8BFB9]">
-                <PhoneCall className="h-4 w-4 mr-2" /> Pedí tu cotización
+                Pedí tu cotización
               </Button>
             </a>
           </div>
@@ -472,7 +461,7 @@ export default function RollerBlindsLanding() {
             aria-label="Abrir menú"
             style={{ zIndex: 60 }}
           >
-            <Menu className="h-7 w-7 text-[#F5F5F5]" />
+            <Menu className="h-7 w-7 text-[#050505]" />
           </button>
         </nav>
         {/* Mobile menu overlay */}
@@ -499,10 +488,11 @@ export default function RollerBlindsLanding() {
                   <div className="font-semibold text-[#F5F5F5]">Menú</div>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-full bg-[#F5F5F5] text-white p-2 shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A69A90]"
+                    className="rounded-full bg-[#F5F5F5] text-white p-2 shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A69A90]
+                    hover:bg-[#EADCD6]"
                     aria-label="Cerrar menú"
                   >
-                    <X className="h-5 w-5" />
+                    <X className="h-5 w-5 text-[#050505]" />
                   </button>
                 </div>
 
@@ -510,21 +500,21 @@ export default function RollerBlindsLanding() {
                   <a
                     href="#catalogo"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#F5F5F5] hover:bg-[#EADCD6]"
+                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#050505] hover:bg-[#EADCD6]  hover:text-[#0F172A]"
                   >
                     Catálogo
                   </a>
                   <a
                     href="#cotizador"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#F5F5F5] hover:bg-[#EADCD6]"
+                    className="block w-full mb-3 rounded-lg px-4 py-3 text-base font-semibold text-[#050505] hover:bg-[#EADCD6] hover:text-[#0F172A]"
                   >
                     Cotizador
                   </a>
                   <a
                     href="#contacto"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full mb-6 rounded-lg px-4 py-3 text-base font-semibold text-[#F5F5F5] hover:bg-[#EADCD6]"
+                    className="block w-full mb-6 rounded-lg px-4 py-3 text-base font-semibold text-[#050505] hover:bg-[#EADCD6]  hover:text-[#0F172A]"
                   >
                     Contacto
                   </a>
@@ -536,8 +526,8 @@ export default function RollerBlindsLanding() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block"
                   >
-                    <Button className="w-full justify-center text-base py-3 bg-[#A69A90] border-[#A69A90] hover:bg-[#C2B280] text-[#F5F5F5]">
-                      <PhoneCall className="h-5 w-5 mr-2" /> Pedí tu cotización
+                    <Button className="w-full justify-center text-base py-3 bg-[#AFA59E] text-white border-[#AFA59E] hover:bg-[#C8BFB9] hover:border-[#C8BFB9]">
+                      Pedí tu cotización
                     </Button>
                   </a>
                 </nav>
@@ -603,7 +593,7 @@ export default function RollerBlindsLanding() {
       {/* Beneficios */}
       <section className="mx-auto max-w-6xl px-4 py-8 md:py-12">
         <div className="grid md:grid-cols-3 gap-6">
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Sun className="h-5 w-5" /> Control de luz
@@ -612,11 +602,11 @@ export default function RollerBlindsLanding() {
                 Filtrá rayos UV y reducí el encandilamiento sin perder vista.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-slate-600">
+            <CardContent className="text-sm text-slate-500">
               Ideal para living y oficinas. Sunscreen 3% o 5%.
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Moon className="h-5 w-5" /> Descanso total
@@ -625,11 +615,11 @@ export default function RollerBlindsLanding() {
                 Blackout para dormitorios, salas de proyección y consultorios.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-slate-600">
+            <CardContent className="text-sm text-slate-500">
               Oscurecimiento superior y excelente aislación.
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Hammer className="h-5 w-5" /> A medida
@@ -638,7 +628,7 @@ export default function RollerBlindsLanding() {
                 Fabricación local y colocación por técnicos calificados.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-slate-600">
+            <CardContent className="text-sm text-slate-500">
               Garantía, repuestos y servicio post‑venta.
             </CardContent>
           </Card>
@@ -654,7 +644,7 @@ export default function RollerBlindsLanding() {
           </p>
           <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {CATALOG.map((item, i) => (
-              <Card key={i} className="overflow-hidden group">
+              <Card key={i} className="overflow-hidden group bg-[#F5F5F5]/80">
                 <div className="h-40 overflow-hidden">
                   <img
                     src={item.img}
@@ -684,7 +674,7 @@ export default function RollerBlindsLanding() {
         className="mx-auto max-w-6xl px-4 py-12 scroll-mt-24"
       >
         <div className="grid lg:grid-cols-2 gap-8 items-start">
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Ruler className="h-5 w-5" /> Calculá tu presupuesto
@@ -704,6 +694,7 @@ export default function RollerBlindsLanding() {
                     min={45}
                     value={width}
                     onChange={(e) => setWidth(Number(e.target.value))}
+                    style={{ color: "inherit" }}
                   />
                 </div>
                 <div>
@@ -714,6 +705,7 @@ export default function RollerBlindsLanding() {
                     min={45}
                     value={height}
                     onChange={(e) => setHeight(Number(e.target.value))}
+                    style={{ color: "inherit" }}
                   />
                 </div>
               </div>
@@ -725,6 +717,7 @@ export default function RollerBlindsLanding() {
                     className="w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#F5F5F5] border-[#D6CFC4] focus:border-[#A69A90] focus:ring-2 focus:ring-[#A69A90]"
                     value={tela}
                     onChange={(e) => setTela(e.target.value as TelaKey)}
+                    style={{ color: "inherit" }}
                   >
                     <option value="sunscreen5">Sunscreen 5%</option>
                     <option value="sunscreen3">Sunscreen 3%</option>
@@ -737,6 +730,7 @@ export default function RollerBlindsLanding() {
                     className="w-full border rounded-md px-3 py-2 bg-[#F8F6F3] text-[#F5F5F5] border-[#D6CFC4] focus:border-[#A69A90] focus:ring-2 focus:ring-[#A69A90]"
                     value={accion}
                     onChange={(e) => setAccion(e.target.value as Accion)}
+                    style={{ color: "inherit" }}
                   >
                     <option value="cadena">Cadena</option>
                     <option value="motor">Motorizado</option>
@@ -805,7 +799,7 @@ export default function RollerBlindsLanding() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle>Dejanos tus medidas</CardTitle>
               <CardDescription className="mt-2 text-slate-600 font-opensans">
@@ -817,25 +811,39 @@ export default function RollerBlindsLanding() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <Label>Nombre</Label>
-                    <Input placeholder="Tu nombre" />
+                    <Input
+                      style={{ color: "inherit" }}
+                      placeholder="Tu nombre"
+                    />
                   </div>
                   <div>
                     <Label>Teléfono</Label>
-                    <Input placeholder="11 1234 5678" />
+                    <Input
+                      style={{ color: "inherit" }}
+                      placeholder="11 1234 5678"
+                    />
                   </div>
                 </div>
                 <div>
                   <Label>Zona/Barrio</Label>
-                  <Input placeholder="Ej: Palermo, CABA" />
+                  <Input
+                    style={{ color: "inherit" }}
+                    placeholder="Ej: Palermo, CABA"
+                  />
                 </div>
                 <div className="grid md:grid-cols-3 gap-4">
                   <div>
                     <Label>Ambientes</Label>
-                    <Input type="number" placeholder="2" />
+                    <Input
+                      style={{ color: "inherit" }}
+                      type="number"
+                      placeholder="2"
+                    />
                   </div>
                   <div>
                     <Label>Ancho (cm)</Label>
                     <Input
+                      style={{ color: "inherit" }}
                       type="number"
                       placeholder="120"
                       defaultValue={width}
@@ -844,6 +852,7 @@ export default function RollerBlindsLanding() {
                   <div>
                     <Label>Alto (cm)</Label>
                     <Input
+                      style={{ color: "inherit" }}
                       type="number"
                       placeholder="160"
                       defaultValue={height}
@@ -852,7 +861,10 @@ export default function RollerBlindsLanding() {
                 </div>
                 <div>
                   <Label>Comentarios</Label>
-                  <Textarea placeholder="Contanos qué necesitás (tela, colores, fecha, etc.)" />
+                  <Textarea
+                    placeholder="Contanos qué necesitás (tela, colores, fecha, etc.)"
+                    style={{ color: "inherit" }}
+                  />
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-500">
                   <ShieldCheck className="h-4 w-4" /> Tus datos están
@@ -892,7 +904,7 @@ export default function RollerBlindsLanding() {
               "Instalaron en tiempo récord.",
               "La asesoría nos ayudó a elegir el grado de apertura ideal.",
             ].map((t, i) => (
-              <Card key={i}>
+              <Card key={i} className="bg-[#F5F5F5]/80">
                 <CardContent className="pt-6 text-slate-700">
                   “{t}”
                   <div className="mt-4 text-sm text-slate-500">
@@ -911,7 +923,7 @@ export default function RollerBlindsLanding() {
           Preguntas frecuentes
         </h2>
         <div className="mt-6 grid md:grid-cols-2 gap-6">
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle>¿Cuánto tarda la entrega?</CardTitle>
             </CardHeader>
@@ -919,7 +931,7 @@ export default function RollerBlindsLanding() {
               Entre 3 y 7 días hábiles según zona y stock de tela.
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle>¿Trabajan con medidas exactas?</CardTitle>
             </CardHeader>
@@ -928,7 +940,7 @@ export default function RollerBlindsLanding() {
               precio final.
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle>¿Hacen motorizadas?</CardTitle>
             </CardHeader>
@@ -936,7 +948,7 @@ export default function RollerBlindsLanding() {
               Sí, con control remoto o Wi‑Fi. Compatible con domótica.
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-[#F5F5F5]/80">
             <CardHeader>
               <CardTitle>¿Qué formas de pago aceptan?</CardTitle>
             </CardHeader>
@@ -967,7 +979,7 @@ export default function RollerBlindsLanding() {
               <li>
                 WhatsApp:{" "}
                 <a
-                  className="underline"
+                  className="underline text-[#F5F5F5]"
                   href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`}
                   target="_blank"
                   rel="noreferrer"
@@ -977,7 +989,10 @@ export default function RollerBlindsLanding() {
               </li>
               <li>
                 Email:{" "}
-                <a className="underline" href="mailto:ventas@rollerpro.com">
+                <a
+                  className="underline text-[#F5F5F5]"
+                  href="mailto:ventas@rollerpro.com"
+                >
                   ventas@rollerpro.com
                 </a>
               </li>
